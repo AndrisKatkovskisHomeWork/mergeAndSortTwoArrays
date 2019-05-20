@@ -1,0 +1,65 @@
+public class Main {
+
+    static int[] first = {8, 1, 2, 3, 4, 112, 1};
+    static int[] second = {5, 2, 7, 8};
+
+    static int arrayLength = first.length + second.length;
+
+    public static void main(String[] args) {
+
+        mergeAndSortTwoArrays();
+    }
+
+    public static void mergeAndSortTwoArrays() {
+        int[] third = new int[arrayLength];
+
+        System.out.println("First array: ");
+        printArray(first);
+
+        System.out.println("\nSecond array: ");
+        printArray(second);
+
+        buildLeftSideOfArray(third);
+        buildRightSideOfArray(third);
+
+        System.out.println("\n\nUnsorted array: ");
+        printArray(third);
+
+        sortArray(third);
+
+        System.out.println("\nSorted array: ");
+        printArray(third);
+
+    }
+
+    public static void printArray(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + ", ");
+        }
+    }
+
+    public static void buildLeftSideOfArray(int[] third){
+        for (int i = 0; i < first.length; i++) {
+            third[i] = first[i];
+        }
+    }
+
+    public static void buildRightSideOfArray (int[] third) {
+        for (int i = 0; i < second.length; i++) {
+            third[arrayLength - second.length + i] = second[i];
+        }
+    }
+
+    public static void sortArray(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int key = arr[i];
+            int j = i - 1;
+
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
+    }
+}
